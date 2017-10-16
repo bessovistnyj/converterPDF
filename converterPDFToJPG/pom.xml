@@ -1,7 +1,7 @@
 <project>
 	<modelVersion>4.0.0</modelVersion>
 	<artifactId>converterPDFToJPG</artifactId>
-	<packaging>pom</packaging>
+	<packaging>jar</packaging>
 
 	<parent>
 		<groupId>ru.napadovskiu</groupId>
@@ -11,6 +11,28 @@
 	
 	<build>
 		<plugins>
+			<plugin>
+				<artifactId>maven-assembly-plugin</artifactId>
+				<executions>
+					<execution>
+						<phase>package</phase>
+						<goals>
+							<goal>single</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<archive>
+						<manifest>
+							<addClasspath>true</addClasspath>
+							<mainClass>ua.Napadovskiy.converter.ConverterPdfToImages</mainClass>
+						</manifest>
+					</archive>
+					<descriptorRefs>
+						<descriptorRef>jar-with-dependencies</descriptorRef>
+					</descriptorRefs>
+				</configuration>
+			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
@@ -85,6 +107,11 @@
             <artifactId>junit</artifactId>
             <version>4.12</version>
         </dependency>
+		 <dependency>
+			 <groupId>org.apache.pdfbox</groupId>
+			 <artifactId>pdfbox</artifactId>
+			 <version>1.8.3</version>
+		 </dependency>
         <dependency>
 			<groupId>org.hamcrest</groupId>
             <artifactId>hamcrest-all</artifactId>
